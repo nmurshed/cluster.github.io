@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Major Clustering Techniques (including Big Data)</title>
+<meta name="author" content="(Shivam Kalra, Aditya Sriram, Niyaz Murshed & Ajay Singh)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/white.css" id="theme"/>
+
+<link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/10120092/custom.css"/>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Major Clustering Techniques (including Big Data)</h1><h2 class="author">Shivam Kalra, Aditya Sriram, Niyaz Murshed &amp; Ajay Singh</h2><h2 class="date">22nd July, 2016</h2><p class="date">Created: 2016-07-22 Fri 12:21</p>
+</section>
+
+<section>
+<section id="slide-orgheadline1">
+<h2 id="orgheadline1">Outline</h2>
+<ul>
+<li><b>Clustering</b></li>
+<li>Clustering vs Classification</li>
+<li>Concept of <b>Big Data</b></li>
+<li>Clustering Techniques</li>
+<li>Application/experiments with <b>Twenty Newsgroup</b> data-set</li>
+<li>Summary</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline6">
+<h2 id="orgheadline6">Clustering</h2>
+<div class="outline-text-2" id="text-orgheadline6">
+</div></section>
+<section id="slide-orgheadline2">
+<h3 id="orgheadline2">What is cluster?</h3>
+<p>
+"A group of the same or similar elements gathered or occurring closely
+together."
+</p>
+
+
+<div class="figure">
+<p><img src="./images/4N6r5Xv.png" alt="4N6r5Xv.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline3">
+<h3 id="orgheadline3">Data Clustering</h3>
+<p>
+Clustering in digital data.
+</p>
+
+
+<div class="figure">
+<p><img src="./images/plot_cluster_comparison_11.png" alt="plot_cluster_comparison_11.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline4">
+<h3 id="orgheadline4">2D Clusters</h3>
+
+<div class="figure">
+<p><img src="./images/image04.gif" alt="image04.gif" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">Challenges of Data Clustering</h3>
+<ul>
+<li>Measuring similarity</li>
+
+<li>Dimensionality reduction</li>
+
+<li>Preserving manifolds</li>
+
+<li>Clustering validation</li>
+
+<li>Outliers</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline9">
+<h2 id="orgheadline9">Clustering vs Classification</h2>
+
+<div class="figure">
+<p><img src="./images/Question-Rage-Face.jpg" alt="Question-Rage-Face.jpg" height="370px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline7">
+<h3 id="orgheadline7">Clustering</h3>
+
+<div class="figure">
+<p><img src="./images/vDoJ9Ho.png" alt="vDoJ9Ho.png" height="370px" />
+</p>
+</div>
+
+<p>
+<i>Given collection of data elements, find meaningful groups.</i>
+</p>
+
+</section>
+<section id="slide-orgheadline8">
+<h3 id="orgheadline8">Classification</h3>
+
+<div class="figure">
+<p><img src="./images/RKVxc9O.png" alt="RKVxc9O.png" height="370px" />
+</p>
+</div>
+
+<p>
+<i>Given data and their labels, learn a model determine label from unseen images</i>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline26">
+<h2 id="orgheadline26">Concept of Big Data</h2>
+
+<div class="figure">
+<p><img src="./images/big-data.jpg" alt="big-data.jpg" height="500px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline10">
+<h3 id="orgheadline10">What is Big Data?</h3>
+<p class="verse">
+<i>Big data refers to groups of data that are so large and unwieldy that regular database management tools have difficulty capturing, storing, sharing and managing the information</i><br  />
+</p>
+
+
+</section>
+<section id="slide-orgheadline11">
+<h3 id="orgheadline11">What is Difficult vs. Big</h3>
+<ul>
+<li><b>Difficult problem</b>
+<ul>
+<li>Encryption/Decryption</li>
+<li>Clustering</li>
+
+</ul></li>
+
+<li><b>BIG problem</b>
+<ul>
+<li>Forecasting weather</li>
+<li>Web search</li>
+<li>Medical Imaging</li>
+
+</ul></li>
+
+</ul>
+
+<p class="fragment (highlight-red)">
+<b>Not every difficult problem is big but every BIG problem is difficult</b>
+</p>
+
+</section>
+<section id="slide-orgheadline12">
+<h3 id="orgheadline12">Quantifying Big Data</h3>
+<p>
+"Every 2 days we create as much digital information as we did up to 2003." &#x2013; <i>Eric Schmidt</i>
+</p>
+
+<p>
+"Data is doubling in size every two years. By 2020, we will have <b>44 Zettabytes</b>
+of data in digital universe." &#x2013; \(EMC^2\)
+</p>
+
+</section>
+<section id="slide-orgheadline13">
+<h3 id="orgheadline13">Big Data Capacity</h3>
+
+<div class="figure">
+<p><img src="./images/scale.jpg" alt="scale.jpg" height="570px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline14">
+<h3 id="orgheadline14">4V's of Big Data</h3>
+
+<div class="figure">
+<p><img src="./images/3V.PNG" alt="3V.PNG" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline15">
+<h3 id="orgheadline15">Big Data: Web Scale</h3>
+
+<div class="figure">
+<p><img src="./images/anatomyofBD.png" alt="anatomyofBD.png" height="570px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline20">
+<h3 id="orgheadline20">Labeled vs Unlabeled Data</h3>
+<div class="outline-text-3" id="text-orgheadline20">
+</div></section>
+<section id="slide-orgheadline16">
+<h4 id="orgheadline16">Labeled Data</h4>
+<p>
+<i>Labeled data typically takes a set of unlabeled data and augments each piece of</i>
+<i>that unlabeled data with some sort of meaningful "tag," "label," or "class" that</i>
+<i>is somehow informative or desirable to know.</i>
+</p>
+
+
+<div class="figure">
+<p><img src="https://katbailey.github.io/ml/images/labeled_data.png" alt="labeled_data.png" height="370px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline17">
+<h4 id="orgheadline17">Labeled Data: Example</h4>
+<ul>
+<li>Photo contains a horse or a cow</li>
+<li>Close captioning in videos</li>
+<li>News articles arranged by topics</li>
+<li>Tweet with hashtags</li>
+<li>X-ray images with annotations</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline18">
+<h4 id="orgheadline18">Unlabeled Data</h4>
+<p>
+<i>Unlabeled data consists of samples of natural or human-created artifacts that</i>
+<i>you can obtain relatively easily from the world.</i>
+</p>
+
+</section>
+<section id="slide-orgheadline19">
+<h4 id="orgheadline19">Unlabeled Data: Examples:</h4>
+<ul>
+<li>photos</li>
+<li>audio recordings</li>
+<li>videos</li>
+<li>news articles</li>
+<li>tweets</li>
+<li>x-rays</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline21">
+<h3 id="orgheadline21">Challenges of Big Data</h3>
+<ul>
+<li>Unlabeled</li>
+<li>Very high dimensional data</li>
+<li>Unstructured and not normalized (variety and veracity)</li>
+<li>Lots of data is available (volume)</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline22">
+<h3 id="orgheadline22">Clustering is the key to Big Data Problem</h3>
+<ul>
+<li>Not feasible to "label" such large volume of data</li>
+
+<li>No prior knowledge of number and nature of groups in data (variety and veracity)</li>
+
+<li>Data evolves over time (velocity)</li>
+
+<li>Clustering provides organization of data in terms of relevance</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline23">
+<h3 id="orgheadline23">Relevant search in Google</h3>
+
+<div class="figure">
+<p><img src="./images/s9Pqdc9.png" alt="s9Pqdc9.png" height="570px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline24">
+<h3 id="orgheadline24">Relevant search in Facebook</h3>
+
+<div class="figure">
+<p><img src="./images/9w2ft4B.png" alt="9w2ft4B.png" height="570px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline25">
+<h3 id="orgheadline25">Suggestions from Youtube</h3>
+
+<div class="figure">
+<p><img src="./images/eURA6Mc.png" alt="eURA6Mc.png" height="570px" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline44">
+<h2 id="orgheadline44">Clustering techniques</h2>
+<div class="outline-text-2" id="text-orgheadline44">
+</div></section>
+<section id="slide-orgheadline27">
+<h3 id="orgheadline27">Taxonomy of Clustering Algorithms</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./images/algo.svg" height="670px">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline28">
+<h3 id="orgheadline28">Type 1: Partition Based</h3>
+<ul>
+<li>All objects are considered initially as a single cluster.</li>
+
+<li>The objects are divided into no of partitions by iteratively locating the
+points between the partitions.</li>
+
+<li>Example: <b>KMeans</b>, KMEDOIDS, KMODS, PAM, CLARA, FCM</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline31">
+<h3 id="orgheadline31">Type 2: Hierarchical Based</h3>
+<ul>
+<li>Agglomerative (top-bottom)</li>
+
+<li>Divisive (bottom-top)</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline29">
+<h4 id="orgheadline29">Agglomerative (top-bottom)</h4>
+<ul>
+<li>One object is selected and successively merges the neighbor objects based on
+certain similarity criteria.</li>
+
+<li>The process is continuous until a cluster is formed.</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline30">
+<h4 id="orgheadline30">Divisive (bottom-top)</h4>
+<ul>
+<li>Set of objects as single cluster</li>
+<li>Divides the cluster into further clusters until desired no of clusters are formed.</li>
+<li>Example: <b>BIRCH</b>, CURE,  ROCK</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline32">
+<h3 id="orgheadline32">Type 3: Density Based</h3>
+<ul>
+<li>Data objects are categorized into core points, border points and noise points.</li>
+
+<li>All the core points are connected together based on the densities to form cluster.</li>
+
+<li>Example: <b>DBSCAN</b>, OPTICS, DBCLASD</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline43">
+<h3 id="orgheadline43">Some important clustering algorithms</h3>
+<p>
+We will discuss one algorithm per class:
+</p>
+
+<ul>
+<li>K-Means (Partition based)</li>
+<li>BIRCH (Hierarchical based)</li>
+<li>DBSCAN (Density based)</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline33">
+<h4 id="orgheadline33">K-Means</h4>
+<ul>
+<li><b>Partition based</b></li>
+<li>Simple</li>
+<li>Great solution for pre-clustering</li>
+<li>Reduces space into disjoint smaller sub-spaces</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline34">
+<h4 id="orgheadline34">K-Means Algorithms</h4>
+<div class="org-src-container">
+
+<pre><code class="python" >def kmeans(X, nclusters):
+
+   ck = random_clusters(nclusters)
+
+   while no_change(ck):
+        for xi in X:
+            cj = nearest_dist(ck, xi)
+
+            assign_point(xi, cj)
+
+        for cj in clusters:
+
+            cj.centroid = mean(cj.points)
+</code></pre>
+</div>
+</section>
+<section id="slide-orgheadline35">
+<h4 id="orgheadline35">K-Means Contd.</h4>
+
+<div class="figure">
+<p><img src="./images/K-means.gif" alt="K-means.gif" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-orgheadline36">
+<h4 id="orgheadline36">BIRCH</h4>
+<ul>
+<li><b>Hierarchical Based</b></li>
+
+<li>Designed for large data-set</li>
+
+<li>Used where time and memory limited</li>
+
+<li>Only one scan of data necessary</li>
+
+<li>Does not need whole data-set in advance</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline37">
+<h4 id="orgheadline37">BIRCH Contd.</h4>
+
+<div class="figure">
+<p><img src="./images/A55eaDu.png" alt="A55eaDu.png" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-orgheadline38">
+<h4 id="orgheadline38">DBSCAN</h4>
+<ul>
+<li>Density based spatial clustering of applications with noise</li>
+
+<li>Cluster based on distance based on the inputs</li>
+
+<li>A single object is represented as some numerical point in some space</li>
+
+<li>Each point is labelled as either – Core, Border or noise</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline39">
+<h4 id="orgheadline39">DBSCAN - Core Point</h4>
+
+<div class="figure">
+<p><img src="./images/core_point.png" alt="core_point.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline40">
+<h4 id="orgheadline40">DBSCAN - Border Point</h4>
+
+<div class="figure">
+<p><img src="./images/border_point.png" alt="border_point.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline41">
+<h4 id="orgheadline41">DBSCAN - Noise Point</h4>
+
+<div class="figure">
+<p><img src="./images/noise_point.png" alt="noise_point.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline42">
+<h4 id="orgheadline42">DBSCAN - Pros &amp; Cons</h4>
+<p>
+<b>Pros:</b>
+</p>
+<ul>
+<li>Discovers any no. of clusters</li>
+<li>Discovers clusters of any sizes and shapes</li>
+<li>Can detect and ignores noise points in the data-set</li>
+
+</ul>
+
+<p>
+<b>Cons:</b>
+</p>
+<ul>
+<li>Sensitive to Neighbourhood Parameter choice</li>
+<li>If neighbourhood is too small then a sparse cluster will be labelled as noise</li>
+<li>If neighbourhood is too large then dense clusters will be merged together</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline54">
+<h2 id="orgheadline54">Experiments</h2>
+<p>
+We ran discussed clustering algorithms on various data-sets:
+</p>
+
+<ul>
+<li>Some <b>toy examples</b></li>
+
+<li>Open <b>20 news group data-set</b></li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline45">
+<h3 id="orgheadline45">Toy Examples</h3>
+<ul>
+<li>Blobs</li>
+
+<li>Anisotropicly Distributed Blobs</li>
+
+<li>Unevenly Sized Blobs</li>
+
+<li>Noisy Circles</li>
+
+<li>Half Moons</li>
+
+</ul>
+
+</section>
+<section>
+
+<div class="figure">
+<p><img src="./images/1.png" alt="1.png" height="780px" />
+</p>
+</div>
+
+</section>
+<section>
+
+<div class="figure">
+<p><img src="./images/2.png" alt="2.png" height="780px" />
+</p>
+</div>
+
+</section>
+<section>
+
+<div class="figure">
+<p><img src="./images/3.png" alt="3.png" height="780px" />
+</p>
+</div>
+
+</section>
+<section>
+
+<div class="figure">
+<p><img src="./images/4.png" alt="4.png" height="780px" />
+</p>
+</div>
+
+</section>
+<section>
+
+
+<div class="figure">
+<p><img src="./images/5.png" alt="5.png" height="780px" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-orgheadline53">
+<h3 id="orgheadline53">Twenty News Groups</h3>
+<ul>
+<li>Collection of approximately 20,000 newsgroup documents, partitioned (nearly)
+evenly across 20 different newsgroups.</li>
+
+<li>Originally collected by <i>Ken Lang</i>.</li>
+
+<li>Popular data set for experiments in text applications of machine learning
+techniques, such as text classification and text clustering.</li>
+
+<li>Source: <a href="http://qwone.com/~jason/20Newsgroups/">http://qwone.com/~jason/20Newsgroups/</a></li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline46">
+<h4 id="orgheadline46">Organization of Data</h4>
+
+<div class="figure">
+<p><img src="./images/SGglw63.png" alt="SGglw63.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline47">
+<h4 id="orgheadline47">Step 1: Collect Data</h4>
+<p>
+We chose 7 topics (4044 articles &amp; 3,665,904 words):
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="python" >categories = [
+    'sci.med',
+    'alt.atheism',
+    'comp.graphics',
+    'comp.sys.ibm.pc.hardware',
+    'rec.sport.baseball',
+    'soc.religion.christian',
+    'rec.sport.hockey'
+]
+
+twentyns_train = fetch_20newsgroups(subset='train',
+                                    shuffle=True,
+                                    random_state=42,
+                                    categories=categories)
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgheadline48">
+<h4 id="orgheadline48">Step 2: Feature selection</h4>
+<ul>
+<li>Out of 3,665,904 words we select 60,000 words/tuples that best fit all the articles
+using TFIDF method (text frequency inverse document frequency).</li>
+
+<li>It includes removing <b>stopping words</b> (was, the, an, for &#x2026;.)</li>
+
+<li>It gives us highly <b>sparse feature</b> of dimension 60k for each article</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre><code class="python" >vectorizer = TfidfVectorizer(max_df=0.5, max_features=6000,
+                             min_df=2, stop_words='english',
+                             use_idf=True)
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgheadline49">
+<h4 id="orgheadline49">Step 3: Visualizing Features</h4>
+<ul>
+<li>We visualized our feature space (60k dimension) using TSNE in 2D.</li>
+
+</ul>
+
+
+<div class="figure">
+<p><img src="images/screenshot-02.png" alt="screenshot-02.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline50">
+<h4 id="orgheadline50">STEP 4a: Clustering Benchmarks</h4>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><b>Algorithms</b></td>
+<td class="org-left"><b>Homogenity</b></td>
+<td class="org-left"><b>Completeness</b></td>
+<td class="org-left"><b>Time</b></td>
+</tr>
+
+<tr>
+<td class="org-left"><b>K-Means</b></td>
+<td class="org-left">\(44\%\)</td>
+<td class="org-left">\(60\%\)</td>
+<td class="org-left">5s</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>BIRCH</b></td>
+<td class="org-left">\(31\%\)</td>
+<td class="org-left">\(47\%\)</td>
+<td class="org-left">132s</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>DBSCAN</b></td>
+<td class="org-left">_</td>
+<td class="org-left">_</td>
+<td class="org-left">_</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="slide-orgheadline51">
+<h4 id="orgheadline51">STEP 4:b Clustering Benchmarks with PCA/LSA dimension reduction</h4>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><b>Algorithms</b></td>
+<td class="org-left"><b>Homogenity</b></td>
+<td class="org-left"><b>Completeness</b></td>
+<td class="org-left"><b>Time</b></td>
+</tr>
+
+<tr>
+<td class="org-left"><b>K-Means</b></td>
+<td class="org-left">\(43\%\)</td>
+<td class="org-left">\(58\%\)</td>
+<td class="org-left">13s</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>BIRCH</b></td>
+<td class="org-left">\(34\%\)</td>
+<td class="org-left">\(45\%\)</td>
+<td class="org-left">24s</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>DBSCAN</b></td>
+<td class="org-left">_</td>
+<td class="org-left">\(26\%\)</td>
+<td class="org-left">76.3</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="slide-orgheadline52">
+<h4 id="orgheadline52">Results and Future Work</h4>
+<ul>
+<li>KMeans seems to be robust and fast approach when you have medium number of
+cluster</li>
+
+<li>KMeans and Birch allow to specify number of clusters whereas DBSCAN does not</li>
+
+<li>How does dimensionality reduction techniques such as <b>PCA</b> or <b>LSA</b> affect the
+clustering?</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline55">
+<h2 id="orgheadline55">Summary</h2>
+<ul>
+<li>Clustering is an exploratory technique; used in every scientific field</li>
+
+<li>Selection of clustering algorithm &amp; its parameters are data dependent</li>
+
+<li>Clustering is essential for “Big Data” problem</li>
+
+<li>BIRCH is better when given problem has large number of clusters</li>
+
+<li>Challenges: Scalability, very large no. of clusters, heterogeneous data,
+streaming data, validity</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline56">
+<h2 id="orgheadline56">Thanks</h2>
+<p>
+For prototyping and presentation:
+</p>
+
+<p height="200px">
+<img src="images/python.png" alt="python.png" height="200px" />
+<img src="images/jupyter.png" alt="jupyter.png" />
+<img src="images/aws.png" alt="aws.png" />
+</p>
+
+<p height="150px">
+<img src="images/emacs.png" alt="emacs.png" height="150px" />
+<img src="images/org.png" alt="org.png" />
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline57">
+<h2 id="orgheadline57">References</h2>
+<ol>
+<li>Fahad, A., Alshatri, N., Tari, Z., Alamri, A., Khalil, I., Zomaya, A. Y.,
+Foufou, S., Bouras, A., .. (). A Survey of Clustering Algorithms for Big Data:
+Taxonomy and Empirical Analysis. , 2(3), 267–279.
+<a href="http://dx.doi.org/10.1109/TETC.2014.2330519">http://dx.doi.org/10.1109/TETC.2014.2330519</a></li>
+
+<li>Sajana, T., Sheela Rani, C. M., &amp; Narayana, K. V. (). A Survey on Clustering
+Techniques for Big Data Mining. , 9(3), .
+<a href="http://dx.doi.org/10.17485/ijst/2016/v9i3/75971">http://dx.doi.org/10.17485/ijst/2016/v9i3/75971</a></li>
+
+<li>Arora, S., &amp; Chana, I. (). A survey of clustering techniques for big data
+analysis. In , Confluence {{The Next Generation Information Technology
+Summit}} ({{Confluence}}), 2014 5th {{International Conference}}- (pp. 59–65).</li>
+
+<li>Andritsos, P., &amp; others (). Data clustering techniques. , (), .</li>
+
+<li>Zeng, H., Wang, X., Chen, Z., Lu, H., &amp; Ma, W. (). CBC: clustering based text
+classification requiring minimal labeled data. In , Third {{IEEE International
+Conference}} on {{Data Mining}}, 2003. {{ICDM}} 2003 (pp. 443–450). : .</li>
+
+<li>Arora, S., &amp; Chana, I. (). A survey of clustering techniques for big data
+analysis. In , Confluence {{The Next Generation Information Technology
+Summit}} ({{Confluence}}), 2014 5th {{International Conference}} - (pp.
+59–65). : .</li>
+
+<li>Fahad, A., Alshatri, N., Tari, Z., Alamri, A., Khalil, I., Zomaya, A. Y.,
+Foufou, S., Bouras, A., .. (). A survey of clustering algorithms for big data:
+Taxonomy and empirical analysis. , 2(3), 267–279.</li>
+
+<li>Berkhin, P. (). A survey of clustering data mining techniques. In (Eds.),
+Grouping multidimensional data (pp. 25–71). : {Springer}.</li>
+
+<li>Bijuraj, L. V. (). Clustering and its Applications. In , Proceedings of
+{{National Conference}} on {{New Horizons}} in {{IT-NCNHIT}} (pp. 169). : .</li>
+
+<li>Thomsen, R. (). Multimodal optimization using crowding-based differential
+evolution. In , Congress on {{Evolutionary Computation}}, 2004. {{CEC2004}}
+(pp. 1382–1389–2). : .</li>
+
+<li>Preuss, M. (). Niching the CMA-ES via Nearest-better Clustering. In ,
+Proceedings of the 12th {{Annual Conference Companion}} on {{Genetic}} and
+{{Evolutionary Computation}} (pp. 1711–1718). : {ACM}.</li>
+
+<li>Kattan, A., &amp; Poli, R. (). Evolutionary synthesis of lossless compression
+algorithms with GP-zip3. In , {{IEEE Congress}} on {{Evolutionary
+Computation}} (pp. 1–8). : .</li>
+
+<li>Shirkhorshidi, A. S., Aghabozorgi, S., Wah, T. Y., &amp; Herawan, T. (). Big Data
+Clustering: A Review. In B. Murgante, S. Misra, A. M. A. C. Rocha, C. Torre,
+J. G. Rocha, M. I. Falcão, D. Taniar, B. O. Apduhan, O. Gervasi, .. (Eds.),
+Computational {{Science}} and {{Its Applications}} – {{ICCSA}} 2014 (pp.
+707–720). : {Springer International Publishing}.</li>
+
+</ol>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline58" data-background="#476182">
+<h2 id="orgheadline58">Question?</h2>
+</section>
+</section>
+</div>
+</div>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 't',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+]
+});
+</script>
+</body>
+</html>
